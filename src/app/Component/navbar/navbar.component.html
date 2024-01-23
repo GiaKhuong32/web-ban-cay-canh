@@ -1,0 +1,58 @@
+
+  <div id="header">
+    <a href="" class="logo">
+      <img src="" alt="">
+    </a>
+    <div id="menu">
+      <div class="item">
+        <a href="">Trang chủ</a>
+      </div>
+      <div class="item">
+        <a href="">Sản phẩm</a>
+      </div>
+      <div class="item">
+        <a href="">Blog</a>
+      </div>
+      <div class="item">
+        <a href="">Liên hệ</a>
+      </div>
+      <div class="item">
+       <button (click)="openDialog()">Them san pham</button>
+      </div><div class="item">
+    <button (click)="openDialogcard()">Gio Hang</button>
+    </div>
+    </div>
+    <div id="actions">
+      <div class="item">
+        <img src="" alt="">
+      </div>
+      <div class="item">
+        <img src="" alt="">
+      </div>
+    </div>
+  </div>
+
+ <dialog #addDialog>
+   <h1>Them</h1>
+   <form [formGroup]="addForm">
+     <input id="id" type="text" formControlName="id">
+     <label for="img">img: </label>
+     <input id="img" type="text" formControlName="img">
+     <label for="name">name: </label>
+     <input id="name" type="text" formControlName="name">
+     <label for="description">description: </label>
+     <input id="description" type="text" formControlName="description">
+     <label for="price">price: </label>
+     <input id="price" type="text" formControlName="price">
+
+   </form>
+   <button (click)="onSubmit()"> Them San Pham</button>
+ </dialog>
+ <dialog #cardDialog>
+   @for (item of itemcard;track item.id){
+     <h1>{{item.name}}</h1>
+     <img src="{{item.img}}" alt="">
+     <p>{{item.description}}</p>
+     <p>{{item.price}}</p>
+   }
+ </dialog>

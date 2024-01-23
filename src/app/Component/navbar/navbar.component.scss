@@ -1,0 +1,36 @@
+#wrapper {
+  /* Kích thước màn hình là 1280 x 720 */
+  width: 100%;
+  height: 100vh;
+}
+#header {
+  width: 100%;
+  padding:0px 30px;
+  margin-top:33px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+#menu {
+  list-style:none;
+  display: flex;
+}
+
+#menu .item {
+  margin:0px 25px;
+}
+
+#menu .item a {
+  color:#626A67;
+  text-decoration: none;
+}
+
+
+#actions {
+  display: flex;
+}
+
+#actions .item {
+  margin-left:22px;
+}
