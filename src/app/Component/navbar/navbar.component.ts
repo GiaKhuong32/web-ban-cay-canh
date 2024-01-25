@@ -24,6 +24,9 @@ export class NavbarComponent {
   naviageAddProduct(){
     this.route.navigate(['addproduct'])
   }
+  naviageStockingProduct(){
+    this.route.navigate(['admin-product-stocking'])
+  }
 
   @Input() itemcard: CayCanh[] = [];
 }

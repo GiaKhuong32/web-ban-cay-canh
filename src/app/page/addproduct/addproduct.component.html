@@ -80,6 +80,7 @@
       <th class="tui-table__th">Số lượng</th>
       <th class="tui-table__th">Mô tả sản phẩm</th>
       <th class="tui-table__th">Giá</th>
+      <th class="tui-table__th">Status</th>
       <th class="tui-table__th tui-table__th_last">Chức năng</th>
     </tr>
       @for (item of firebaseService.prodList;track item){
@@ -89,6 +90,7 @@
           <td class="tui-table__td">{{item.quantity}}</td>
           <td class="tui-table__td">{{item.description}}</td>
           <td class="tui-table__td">{{item.price}}</td>
+          <td class="tui-table__td">{{item.status}}</td>
           <td> <button
             id="btnedit"
             type="button"

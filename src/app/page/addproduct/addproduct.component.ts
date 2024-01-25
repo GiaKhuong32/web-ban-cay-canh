@@ -47,7 +47,7 @@ export class AddproductComponent {
       name:this.addForm.value.name||'',
       description:this.addForm.value.description||'',
       price:this.addForm.value.price||'',
-      status:"Con Hang",
+      status:"stocking",
       quantity:1,
     }
     this.firebaseService.add(additems);
