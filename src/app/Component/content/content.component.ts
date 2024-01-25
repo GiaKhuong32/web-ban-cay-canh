@@ -1,14 +1,18 @@
-import {ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {FormControl, FormGroup, isFormGroup, ReactiveFormsModule} from "@angular/forms";
-export interface CayCanh {
-  id: string,
-  img: string,
-  name: string,
-  description: string,
-  price: string,
-  status:string,
-  quality:number,
-}
+import {CardService} from "../../services/card.service";
+import {CayCanh} from "../../model/tree";
+
 @Component({
   selector: 'app-content',
   standalone: true,
@@ -16,9 +20,12 @@ export interface CayCanh {
     ReactiveFormsModule
   ],
   templateUrl: './content.component.html',
-  styleUrl: './content.component.scss'
+  styleUrl: './content.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentComponent {
+  constructor(public cardServices:CardService) {
+  }
   @Input() item: CayCanh[]=[]
   deleteitem(index:number){
     this.item.splice(index,1);
@@ -51,7 +58,7 @@ export class ContentComponent {
       description:this.updateform.value.description||'',
       price:this.updateform.value.price||'',
       status:"Con Hang",
-      quality:1,
+      quantity:1,
     }
    let space = this.item.findIndex(item => item.id === updateitems.id);
     if(space!=-1){

@@ -1,3 +1,5 @@
-<app-navbar [itemcard]="itemlistcard" (newItemEvent)="addItem($event)"></app-navbar>
-<app-content (newcardinvent)="addtocard($event)" [item]="itemcard"></app-content>
+<tui-root>
+<app-navbar [itemcard]="this.cardServices.itemlistcard" ></app-navbar>
+<router-outlet></router-outlet>
 
+</tui-root>

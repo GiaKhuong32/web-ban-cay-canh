@@ -1,33 +1,23 @@
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
+import { TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER } from "@taiga-ui/core";
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {NavbarComponent} from "./Component/navbar/navbar.component";
-import {CayCanh, ContentComponent} from "./Component/content/content.component";
+import { ContentComponent} from "./Component/content/content.component";
+import {CardService} from "./services/card.service";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,NavbarComponent,ContentComponent],
+  imports: [RouterOutlet,NavbarComponent,ContentComponent, TuiRootModule, TuiDialogModule, TuiAlertModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+    providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}]
 })
 export class AppComponent {
   title = 'webbanhang';
-  itemcard: CayCanh[]=[
-    {
-      id:'1',
-      img:'src/assets/img/Cây Lưỡi Hổ.jpg',
-      name:'Cây lưỡi hổ',
-      quality:30,
-      price:'500.000',
-      status: 'còn hàng',
-      description:'Cây này đẹp lắm',
-    }
-  ]
-  addItem(newItem: CayCanh) {
-    this.itemcard.push(newItem);
-  }
-  itemlistcard: CayCanh[]=[]
-  addtocard(newItem: CayCanh) {
 
-    this.itemlistcard.push(newItem);
-}}
+  constructor(public cardServices:CardService) {
+  }
+
+  }

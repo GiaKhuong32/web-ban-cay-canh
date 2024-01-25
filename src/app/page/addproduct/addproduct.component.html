@@ -1,0 +1,13 @@
+<div class="edit">
+  <div class="exitText">
+    <h1>Them</h1>
+  </div>
+
+  <form [formGroup]="addForm">
+    <input id="img" type="text" formControlName="img" placeholder="Img">
+    <input id="name" type="text" formControlName="name"placeholder="Name">
+    <input id="description" type="text" formControlName="description"placeholder="Description">
+    <input id="price" type="text" formControlName="price"placeholder="Price">
+  </form>
+  <button (click)="onSubmit()"> Them San Pham</button>
+</div>
