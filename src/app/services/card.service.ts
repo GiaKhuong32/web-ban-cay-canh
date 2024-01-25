@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {CayCanh} from "../model/tree";
+import {collection, deleteDoc, doc, Firestore, onSnapshot, setDoc, updateDoc} from "@angular/fire/firestore";
+import {DocumentData} from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardService {
-
-  constructor() { }
 
   itemcard: CayCanh[]=[
     {

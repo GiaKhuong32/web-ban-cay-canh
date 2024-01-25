@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "caycanh-f192a": {
+      "hosting": {
+        "webbanhang": [
+          "caycanh-f192a"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "caycanh-f192a"
+  }
+}

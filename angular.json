@@ -107,6 +107,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "webbanhang:build:production",
+              "serveTarget": "webbanhang:serve:production"
+            },
+            "development": {
+              "buildTarget": "webbanhang:build:development",
+              "serveTarget": "webbanhang:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

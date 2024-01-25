@@ -3,6 +3,11 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 import {Router, RouterLink} from "@angular/router";
 import {CardService} from "../../services/card.service";
 import {CayCanh} from "../../model/tree";
+import {TuiCheckboxModule, TuiInputModule} from "@taiga-ui/kit";
+import {TuiButtonModule, TuiDialogModule, TuiHintModule} from "@taiga-ui/core";
+import {DocumentData} from "@angular/fire/compat/firestore";
+import {TuiAutoFocusModule} from "@taiga-ui/cdk";
+import {FirebaseService} from "../../services/firebase.service";
 
 @Component({
   selector: 'app-addproduct',
@@ -11,24 +16,19 @@ import {CayCanh} from "../../model/tree";
     FormsModule,
     ReactiveFormsModule,
     RouterLink,
+    TuiCheckboxModule,
+    TuiDialogModule,
+    TuiInputModule,
+    TuiButtonModule,
+    TuiHintModule,
+    TuiAutoFocusModule,
 
   ],
   templateUrl: './addproduct.component.html',
   styleUrl: './addproduct.component.scss'
 })
 export class AddproductComponent {
-  constructor(public route:Router,public cardServices:CardService) {
-  }
-  @ViewChild('addDialog', { static: true })
-  dialogadd!: ElementRef<HTMLDialogElement>;
-  cdradd = inject(ChangeDetectorRef);
-  openDialog() {
-    this.dialogadd.nativeElement.showModal();
-    this.cdradd.detectChanges();
-  }
-  closeDialog() {
-    this.dialogadd.nativeElement.close();
-    this.cdradd.detectChanges();
+  constructor(public firebaseService:FirebaseService) {
   }
 
   addForm = new FormGroup({
@@ -39,10 +39,7 @@ export class AddproductComponent {
     price: new FormControl(''),
 
   });
-  @Output() newItemEvent = new EventEmitter<CayCanh>();
-  addItem(newItem: CayCanh) {
-    this.cardServices.itemcard.push(newItem);
-  }
+
   onSubmit() {
     let additems: CayCanh ={
       id:this.addForm.value.id || '',
@@ -53,8 +50,42 @@ export class AddproductComponent {
       status:"Con Hang",
       quantity:1,
     }
-    this.newItemEvent.emit(additems)
-    this.route.navigate([''])
-    this.addItem(additems)
+    this.firebaseService.add(additems);
+    this.addForm.reset();
+    this.open = false;
+  }
+  open = false;
+
+  showDialog(): void {
+    this.open = true;
+  }
+  openedit = false;
+  showeditDialog(listitem: DocumentData) {
+    this.updateform.patchValue(listitem);
+    this.openedit = true;
+  }
+  updateform= new FormGroup({
+    id: new FormControl(''),
+    img: new FormControl(''),
+    name: new FormControl(''),
+    description: new FormControl(''),
+    price: new FormControl(''),
+  });
+  updateItem(){
+    let items: CayCanh ={
+      id:this.updateform.value.id || '',
+      img:this.updateform.value.img || '',
+      name:this.updateform.value.name||'',
+      description:this.updateform.value.description||'',
+      price:this.updateform.value.price||'',
+      status:"Con Hang",
+      quantity:1,
+    }
+    this.firebaseService.update(items).then();
+    this.updateform.reset();
+    this.openedit = false;
+  }
+  delete(item:DocumentData){
+    this.firebaseService.delete(item).then();
   }
 }

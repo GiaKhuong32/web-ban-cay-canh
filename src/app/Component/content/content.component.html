@@ -2,10 +2,10 @@
 <div id="wp-products">
   <h2>SẢN PHẨM CỦA CHÚNG TÔI</h2>
   <ul id="list-products">
-    @for (listitems of item; track listitems.name;let i= $index) {
+    @for (listitems of this.cardServices.itemcard; track listitems;let i= $index) {
       <div class="item">
 
-        <img id="pic" src [src]='listitems.img' alt="">
+        <img id="pic"  [src]='listitems.img' alt="">
         <div class="tree">
 
                             <img src="./assets/img/Cây%20Lưỡi%20Hổ.jpg" alt="" class="avatar">
@@ -36,8 +36,6 @@
         >
           Mua Ngay
         </button>
-        <button class="click"(click)="openDialog(listitems)">Sửa </button>
-        <button class="click"(click)="deleteitem(i)">Xóa</button>
         <button class="click"(click)="addcard(listitems)">Thêm vào Giỏ Hàng</button>
       </div>
     }
@@ -203,23 +201,5 @@
   </div>
 </div>
 
-<dialog #editDialog>
-  <div>
-    <div class="dialog-header">
-      <h1>Sua</h1>
-      <button (click)="closeDialog()">Exit</button>
-    </div>
-    <form [formGroup]="updateform">
-      <label for="img">img: </label>
-      <input id="img" type="text" formControlName="img" placeholder="img">
-      <label for="name">name: </label>
-      <input id="name" type="text" formControlName="name">
-      <label for="description">description: </label>
-      <input id="description" type="text" formControlName="description">
-      <label for="price">price: </label>
-      <input id="price" type="text" formControlName="price">
 
-    </form>
-    <button (click)="updateItem()"> Sua San Pham</button>
-  </div>
-</dialog>
+

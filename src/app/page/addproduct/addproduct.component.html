@@ -1,13 +1,154 @@
-<div class="edit">
-  <div class="exitText">
-    <h1>Them</h1>
-  </div>
+<!--<div class="edit">-->
+<!--  <div class="exitText">-->
+<!--    <h1>Them</h1>-->
+<!--  </div>-->
 
-  <form [formGroup]="addForm">
-    <input id="img" type="text" formControlName="img" placeholder="Img">
-    <input id="name" type="text" formControlName="name"placeholder="Name">
-    <input id="description" type="text" formControlName="description"placeholder="Description">
-    <input id="price" type="text" formControlName="price"placeholder="Price">
-  </form>
-  <button (click)="onSubmit()"> Them San Pham</button>
+<!--  <form [formGroup]="addForm">-->
+<!--    <input id="img" type="text" formControlName="img" placeholder="Img">-->
+<!--    <input id="name" type="text" formControlName="name"placeholder="Name">-->
+<!--    <input id="description" type="text" formControlName="description"placeholder="Description">-->
+<!--    <input id="price" type="text" formControlName="price"placeholder="Price">-->
+<!--  </form>-->
+<!--  <button (click)="onSubmit()"> Them San Pham</button>-->
+<!--</div>-->j
+<div id="add">
+<h1>Thêm</h1>
+  <button
+    size="m"
+    tuiButton
+    tuiHint="Some text"
+    tuiHintDirection="top"
+    type="button"
+    (click)="showDialog()"
+  >
+    <i class="fa-solid fa-plus"></i>
+  </button>
+  <ng-template
+    let-observer
+    [tuiDialogOptions]="{label: 'Add', size: 's'}"
+    [(tuiDialog)]="open"
+  >
+    <form
+      [formGroup]="addForm"
+      (ngSubmit)="observer.complete()"
+    >
+      <p>This abstracts away service and subscription</p>
+      <tui-input
+        formControlName="img"
+        tuiAutoFocus
+      >
+        Ảnh
+      </tui-input>
+      <tui-input
+        formControlName="name"
+        tuiAutoFocus
+      >
+        Tên
+      </tui-input>
+      <tui-input
+        formControlName="description"
+        tuiAutoFocus
+      >
+        Mô tả
+      </tui-input>
+      <tui-input
+        formControlName="price"
+        tuiAutoFocus
+      >
+        Giá
+      </tui-input>
+      <p>
+        <button
+          tuiButton
+          type="button"
+          [disabled]="!addForm.valid"
+          (click)="onSubmit()"
+        >
+          Thêm
+        </button>
+      </p>
+    </form>
+  </ng-template>
+
 </div>
+<div id="QUANLY1">
+  <table class="tui-table">
+    <tbody>
+    <tr class="tui-table__tr tui-table__tr_border_none">
+      <th class="tui-table__th">Ảnh</th>
+      <th class="tui-table__th">Tên Sản Phẩm</th>
+      <th class="tui-table__th">Số lượng</th>
+      <th class="tui-table__th">Mô tả sản phẩm</th>
+      <th class="tui-table__th">Giá</th>
+      <th class="tui-table__th tui-table__th_last">Chức năng</th>
+    </tr>
+      @for (item of firebaseService.prodList;track item){
+        <tr>
+          <td><img [src]="item.img"></td>
+          <td class="tui-table__td">{{item.name}}</td>
+          <td class="tui-table__td">{{item.quantity}}</td>
+          <td class="tui-table__td">{{item.description}}</td>
+          <td class="tui-table__td">{{item.price}}</td>
+          <td> <button
+            id="btnedit"
+            type="button"
+            size="m"
+            tuiButton
+            tuiHint="Sửa"
+            tuiHintDirection="top"
+            (click)="showeditDialog(item)"
+          ><i class="fa-solid fa-pen-nib"></i></button>
+            <button (click)="delete(item)"><i class="fa-solid fa-x"></i></button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<ng-template
+  let-observer
+  [tuiDialogOptions]="{label: 'Edit', size: 's'}"
+  [(tuiDialog)]="openedit"
+>
+  <form
+    [formGroup]="updateform"
+    (ngSubmit)="observer.complete()"
+  >
+    <p>This abstracts away service and subscription</p>
+    <tui-input
+      formControlName="img"
+      tuiAutoFocus
+    >
+      Ảnh
+    </tui-input>
+    <tui-input
+      formControlName="name"
+      tuiAutoFocus
+    >
+      Tên
+    </tui-input>
+    <tui-input
+    formControlName="description"
+    tuiAutoFocus
+  >
+    Mô tả
+  </tui-input>
+    <tui-input
+      formControlName="price"
+      tuiAutoFocus
+    >
+      Giá
+    </tui-input>
+    <p>
+      <button
+        tuiButton
+        type="button"
+        (click)="updateItem()"
+        [disabled]="!updateform.valid"
+      >
+        Sửa
+      </button>
+    </p>
+  </form>
+</ng-template>
