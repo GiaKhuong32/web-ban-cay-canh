@@ -1,79 +1,93 @@
 <div id="table1">
-  <table class="tui-table">
-  <tbody>
-  <tr class="tui-table__tr tui-table__tr_border_none">
-    <th class="tui-table__th">Ảnh</th>
-    <th class="tui-table__th">Tên Sản Phẩm</th>
-    <th class="tui-table__th">Số lượng</th>
-    <th class="tui-table__th">Mô tả sản phẩm</th>
-    <th class="tui-table__th">Giá</th>
-    <th class="tui-table__th tui-table__th_last">Chọn sản Phẩm</th>
-  </tr>
-    @for (item of this.cardServices.itemcard;track item.id){
-    <tr>
-      <td><img [src]="item.img"/></td>
-      <td class="tui-table__td">{{item.name}}</td>
-      <td class="tui-table__td">{{item.quantity}}</td>
-      <td class="tui-table__td">{{item.description}}</td>
-      <td class="tui-table__td">{{item.price}}</td>
-      <td> <tui-checkbox class="tui-space_bottom-3"></tui-checkbox></td>
-    </tr>
-    }
-  </tbody>
-</table>
+  <div id="labelTable">
+    <h4>GIỎ HÀNG CỦA BẠN</h4>
+    <table class="tui-table">
+      @if (this.cardServices.itemlistcard.length == 0){
+        <h2>Giỏ hàng trống</h2>
+      }
+      @else{
+        <tbody>
+        <tr class="tui-table__tr tui-table__tr_border_none">
+          <th class="tui-table__th">Ảnh</th>
+          <th class="tui-table__th">Tên Sản Phẩm</th>
+          <th class="tui-table__th">Số lượng</th>
+          <th class="tui-table__th">Mô tả sản phẩm</th>
+          <th class="tui-table__th">Giá</th>
+          <th class="tui-table__th tui-table__th_last">Chọn sản Phẩm</th>
+        </tr>
+          @for (item of this.cardServices.itemlistcard; track item.id) {
+            <tr>
+              <td><img [src]="item.img"/></td>
+              <td class="tui-table__td">{{ item.name }}</td>
+              <td class="tui-table__td" >
+                <div id="quantiinde">
+                  <button
+                    size="m"
+                    tuiButton
+                    tuiHint="Some text"
+                    tuiHintDirection="top"
+                    type="button"
+                    (click)="this.cardServices.descreaseQuantity(item)"
+                  >
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                  <h3>{{item.quantity}}</h3>
+                  <button
+                    size="m"
+                    tuiButton
+                    tuiHint="Some text"
+                    tuiHintDirection="top"
+                    type="button"
+                    (click)="this.cardServices.insceaseQuantity(item)"
+                  >
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
 
+              </td>
+              <td class="tui-table__td">{{ item.description }}</td>
+              <td class="tui-table__td">{{ item.price }}</td>
+              <td>
+                <tui-checkbox class="tui-space_bottom-3"></tui-checkbox>
+                <button
+                  size="m"
+                  tuiButton
+                  tuiHint="Xóa"
+                  tuiHintDirection="top"
+                  type="button"
+                  (click)="this.cardServices.deleteItemInCart(item)"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      }
+    </table>
+  </div>
   <div class="table3">
-    <div id ="donhang">
-      <h1>Đơn Hàng:</h1>
-      <label>1</label>
+    <div>
+      <h2>Đơn Hàng:</h2>
+      <label>{{this.cardServices.itemlistcard.length}}</label>
     </div>
-    <div id ="soluong">
-      <h1>Số Lượng</h1>
+    <div>
+      <h2>Số Lượng</h2>
       <label>2</label>
     </div>
-    <div id ="giamgia">
+    <div>
       <h2>Giảm Giá</h2>
       <label>3</label>
     </div>
-    <div id ="tongbill">
-      <h3>Tổng Bill:</h3>
-      <label>4</label>
+    <div>
+      <h2>Tổng Bill:</h2>
+      <label>{{cardServices.sumCardPrice()}}</label>
     </div>
     <button id="btn">Thanh Toán</button>
   </div>
 </div>
 
 
-
-<!--<div tuiCard>-->
-<!--  <tui-badge-->
-<!--    appearance="custom"-->
-<!--    class="badge"-->
-<!--  >-->
-<!--    <tui-icon icon="tuiIconTarget"></tui-icon>-->
-<!--    10 %-->
-<!--  </tui-badge>-->
-
-<!--  <h2 tuiTitle>-->
-<!--    Title-->
-<!--    <span tuiSubtitle>Subtitle</span>-->
-<!--  </h2>-->
-<!--</div>-->
-
-<!--<div tuiCard>-->
-<!--  <h2 tuiTitle>-->
-<!--    Title-->
-<!--    <span tuiSubtitle>Subtitle</span>-->
-<!--  </h2>-->
-
-<!--  <tui-badge-->
-<!--    appearance="custom"-->
-<!--    class="badge"-->
-<!--  >-->
-<!--    <tui-icon icon="tuiIconTarget"></tui-icon>-->
-<!--    10 %-->
-<!--  </tui-badge>-->
-<!--</div>-->
 
 
 

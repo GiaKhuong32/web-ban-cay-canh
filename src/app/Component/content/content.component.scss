@@ -54,7 +54,7 @@
 
 #list-products {
   display: flex;
-  list-style: none;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
@@ -190,16 +190,6 @@ margin-left: 10px;
   text-align: center;
   margin-top:13px;
 }
-
-#list-comment .item .tree {
-  display: flex;
-  margin:0px auto;
-  width: 50%;
-  margin-top:32px;
-  justify-content: center;
-  align-items: center;
-}
-
 #list-comment .item .name {
   text-align: center;
   font-weight: bold;
@@ -276,5 +266,30 @@ margin-left: 10px;
   border-radius: 10px;
   margin-left: 20px;
 }
+
+  .container {
+    max-width: 62.5rem;
+  }
+
+  .some-figure {
+    border-radius: 100%;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--tui-secondary-active);
+  }
+  .tui-col_md-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  h3,h4,p {
+    text-align: center;
+  }
+
+
+
 
 

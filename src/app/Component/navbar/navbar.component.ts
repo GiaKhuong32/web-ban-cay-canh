@@ -1,31 +1,32 @@
 import {ChangeDetectorRef, Component, ElementRef, inject, Input, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { Output, EventEmitter } from '@angular/core';
-import {Router, RouterLink} from "@angular/router";
+import {FormControl, FormGroup, FormsModule,} from "@angular/forms";
+import {Router} from "@angular/router";
 import {CayCanh} from "../../model/tree";
+import {SharedModule} from "../../shared/shared.module";
+import {AuthService} from "../../services/auth.service";
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
     FormsModule,
-    ReactiveFormsModule,
-    RouterLink,
-
+    SharedModule
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  constructor(public route:Router) {
+  constructor(public route:Router, private authService: AuthService) {
   }
   naviage(){
-    this.route.navigate(['card'])
+    this.route.navigate([''])
   }
-  naviageAddProduct(){
-    this.route.navigate(['addproduct'])
+  navigate(path: string){
+    this.route.navigateByUrl('/home'+path);
   }
-  naviageStockingProduct(){
-    this.route.navigate(['admin-product-stocking'])
+
+  signOutWithGoogle() {
+    this.authService.signOutWithGoogle();
+    this.route.navigate(['']).then();
   }
 
   @Input() itemcard: CayCanh[] = [];

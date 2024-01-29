@@ -7,14 +7,7 @@ import {DocumentData} from "@angular/fire/compat/firestore";
   providedIn: 'root'
 })
 export class FirebaseService {
-  prodList: CayCanh[] = [];
   constructor(private firestore:Firestore) {
-    onSnapshot(collection(this.firestore, "products"), (collection) => {
-      this.prodList = [];
-      collection.forEach((doc)=>{
-        this.prodList.push(doc.data() as any);
-      })
-    });
   }
 
   async add(addItem: CayCanh){
@@ -24,7 +17,7 @@ export class FirebaseService {
       const addProduct = {
         id: id,
         name: addItem['name'],
-        image: addItem['img'],
+        img: addItem['img'],
         description: addItem['description'],
         price: addItem['price'],
         quantity: addItem['quantity'],
@@ -42,7 +35,7 @@ export class FirebaseService {
     const itemUpdate = {
       id: item['id'],
       name: item['name'],
-      image: item['img'],
+      img: item['img'],
       description: item['description'],
       price: item['price'],
       quantity: item['quantity'],

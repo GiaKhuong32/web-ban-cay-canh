@@ -1,33 +1,36 @@
-
 <div id="wrapper">
-<div id="header">
-  <img class="logo" src="https://png.pngtree.com/png-vector/20230120/ourlarge/pngtree-rooted-tree-illustration-logo-design-png-image_6566841.png" alt="">
+  <div id="header">
+    <img class="logo"
+         src="https://png.pngtree.com/png-vector/20230120/ourlarge/pngtree-rooted-tree-illustration-logo-design-png-image_6566841.png"
+         alt="">
 
     <div id="menu">
       <div class="item">
-        <a href="">Trang chủ</a>
+        <button (click)="navigate('')">Trang chủ</button>
       </div>
       <div class="item">
-        <a href="">Sản phẩm</a>
+        <a >Sản phẩm</a>
       </div>
       <div class="item">
-        <a href="">Blog</a>
+        <a >Blog</a>
       </div>
       <div class="item">
-        <a href="">Liên hệ</a>
+        <a >Liên hệ</a>
       </div>
       <div class="item">
-       <button (click)="naviageAddProduct()">Admin Product</button>
+        <button (click)="navigate('/addproduct')">Quản lý sản phẩm</button>
       </div>
       <div class="item">
-        <button (click)="naviageStockingProduct()">Admin Stocking</button>
+        <button (click)="navigate('/admin-product-stocking')">Quản lý sản phẩm hết hàng</button>
       </div>
       <div class="item">
-    <button (click)="naviage()">
-      <i class="fa-solid fa-cart-shopping"></i>
-    </button>
-
-    </div>
+        <button (click)="navigate('/card')">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+      </div>
+      <div class="item">
+        <button (click)="signOutWithGoogle()">Đăng xuất</button>
+      </div>
     </div>
     <div id="actions">
       <div class="item">

@@ -1,46 +1,34 @@
+<app-imgtree></app-imgtree>
 
 <div id="wp-products">
   <h2>SẢN PHẨM CỦA CHÚNG TÔI</h2>
-  <ul id="list-products">
-    @for (listitems of this.cardServices.itemcard; track listitems;let i= $index) {
-      <div class="item">
-
-        <img id="pic"  [src]='listitems.img' alt="">
-        <div class="tree">
-
-                            <img src="./assets/img/Cây%20Lưỡi%20Hổ.jpg" alt="" class="avatar">
-
-
-                            <img src="./assets/img/KimTien.jpg" alt="" class="avatar">
-
-
-                            <img src="./assets/img/Phát%20Tài.jpg" alt="" class="avatar">
-
-
-                            <img src="./assets/img/Lan%20Ý.jpg" alt="" class="avatar">
-
-
-                            <img src="./assets/img/Vạn%20Lộc.jpg" alt="" class="avatar">
-
-
-        </div>
-        <div class="name">{{listitems.name}}</div>
-        <div class="desc">{{listitems.description}}</div>
-        <div class="price">{{listitems.price}}</div>
-        <div class="quatity">{{listitems.quantity}}</div>
-        <button
-          appearance="primary"
-          tuiButton
-          type="button"
-          class="tui-space_right-3 tui-space_bottom-3"
-        >
-          Mua Ngay
-        </button>
-        <button class="click"(click)="addcard(listitems)">Thêm vào Giỏ Hàng</button>
+      <div class="container">
+        <div class="tui-row">
+          @for (listitems of this.cardServices.itemcard; track listitems;) {
+          <div class="tui-col_md-4">
+            <tui-island>
+              <img id="pic" [src]='listitems.img' alt="Cây Cảnh">
+              <h3 class="tui-island__title">{{listitems.name}}</h3>
+              <h4 class="tui-island__title">{{listitems.price}} VND</h4>
+              <p class="tui-island__paragraph">
+                {{listitems.description}}
+              </p>
+              <p class="tui-island__paragraph tui-island__paragraph_link">
+                <button
+                  appearance="accent"
+                  tuiButton
+                  type="button"
+                  class="tui-space_right-3 tui-space_bottom-3"
+                  (click)="navigateToDetail(listitems.id)"
+                >
+                  Xem chi tiết
+                </button>
+              </p>
+            </tui-island>
+          </div>
+          }
+            </div>
       </div>
-    }
-  </ul>
-
   <div class="list-page">
     <div class="item">
       <a href="">1</a>
@@ -197,7 +185,8 @@
     <form action="">
       <input type="text" placeholder="Địa chỉ email">
       <button>Nhận tin</button>
-    </form><p>content works!</p>
+    </form>
+    <p>content works!</p>
   </div>
 </div>
 

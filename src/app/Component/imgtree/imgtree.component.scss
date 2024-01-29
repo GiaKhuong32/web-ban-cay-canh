@@ -16,23 +16,17 @@
 #banner  .box-left h2 {
   font-size:48px;
   margin-top:75px;
-  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
+  gap: 20px
 }
-#banner .box-left h2 span{
-  padding-bottom: 20px;
-}
-
 #banner .box-left p {
   color:#D0D0D0;
   font-size:18px
 }
-
 #banner .box-left button {
   width: 191px;
   height: 40px;
-  margin-top:41px;
   background:#1d1a1a;
   border:none;
   outline:none;
@@ -90,9 +84,8 @@
   }
 }
 span{
-  color: green;
+  color: yellow;
   font-size: 36px;
   font-weight: bold;
   letter-spacing: 3px;
-  margin-bottom: 20px;
 }

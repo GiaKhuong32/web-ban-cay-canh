@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, ElementRef, inject, ViewChild,ChangeDetectionStrategy} from '@angular/core';
 import {CardService} from "../../services/card.service";
 import {FormsModule} from "@angular/forms";
-import {TuiScrollbarModule, TuiSvgModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiHintModule, TuiScrollbarModule, TuiSvgModule} from "@taiga-ui/core";
 import {TuiBadgeModule, TuiCheckboxModule} from "@taiga-ui/kit";
 @Component({
   selector: 'app-card',
@@ -12,6 +12,8 @@ import {TuiBadgeModule, TuiCheckboxModule} from "@taiga-ui/kit";
     TuiScrollbarModule,
     TuiBadgeModule,
     TuiCheckboxModule,
+    TuiButtonModule,
+    TuiHintModule,
   ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',

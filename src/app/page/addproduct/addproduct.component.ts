@@ -28,7 +28,7 @@ import {FirebaseService} from "../../services/firebase.service";
   styleUrl: './addproduct.component.scss'
 })
 export class AddproductComponent {
-  constructor(public firebaseService:FirebaseService) {
+  constructor(public firebaseService:FirebaseService, public cardService: CardService) {
   }
 
   addForm = new FormGroup({

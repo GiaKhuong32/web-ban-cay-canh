@@ -1,2 +1,4 @@
-<app-imgtree></app-imgtree>
-<app-content (newcardinvent)="this.cardServices.addtocard($event)" [item]="this.cardServices.itemcard"></app-content>
+<app-navbar [itemcard]="this.cardServices.itemlistcard" ></app-navbar>
+<!--<app-imgtree></app-imgtree>-->
+<router-outlet></router-outlet>
+<!--<app-content (newcardinvent)="this.cardServices.addtocard($event)" [item]="this.cardServices.itemcard"></app-content>-->

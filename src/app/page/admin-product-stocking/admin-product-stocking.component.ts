@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {TuiButtonModule, TuiHintModule} from "@taiga-ui/core";
 import {FirebaseService} from "../../services/firebase.service";
+import {CardService} from "../../services/card.service";
 
 @Component({
   selector: 'app-admin-product-stocking',
@@ -13,6 +14,6 @@ import {FirebaseService} from "../../services/firebase.service";
   styleUrl: './admin-product-stocking.component.scss'
 })
 export class AdminProductStockingComponent {
-  constructor(public firebaseService:FirebaseService) {
+  constructor(public cardService: CardService) {
   }
 }

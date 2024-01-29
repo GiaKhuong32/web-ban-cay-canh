@@ -5,7 +5,7 @@ import {
   ElementRef,
   EventEmitter,
   inject,
-  Input,
+  Input, OnInit,
   Output,
   ViewChild
 } from '@angular/core';
@@ -13,25 +13,35 @@ import {FormControl, FormGroup, isFormGroup, ReactiveFormsModule} from "@angular
 import {CardService} from "../../services/card.service";
 import {CayCanh} from "../../model/tree";
 import {FirebaseService} from "../../services/firebase.service";
+import {ImgtreeComponent} from "../imgtree/imgtree.component";
+import {Router} from "@angular/router";
+import {SharedModule} from "../../shared/shared.module";
 
 @Component({
   selector: 'app-content',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImgtreeComponent,
+    SharedModule
   ],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContentComponent {
-  constructor(public cardServices:CardService,public firebaseService:FirebaseService) {
+export class ContentComponent implements OnInit{
+  constructor(public cardServices:CardService,private router: Router) {
   }
-  @Input() item: CayCanh[]=[]
 
-  @Output() newcardinvent = new EventEmitter<CayCanh>();
-  addcard(card:CayCanh) {
-    this.newcardinvent.emit(card);
+  products: any = [];
+
+  ngOnInit(): void {
+    this.products = this.cardServices.getProduct();
+  }
+
+  navigateToDetail(id: string) {
+    this.cardServices.getItemById(id);
+    this.router.navigate(['/home/product-detail/', id]);
   }
 }
 
